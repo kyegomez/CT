@@ -18,8 +18,8 @@ v = torch.randn(batch_size, seq_len, dim) + 1j * torch.randn(
 )
 
 attention_layer = ComplexAttention(
-    dim, 
-    heads, 
+    dim,
+    heads,
     qk_norm=True,
     dropout=0.1,
 )

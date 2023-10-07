@@ -41,11 +41,7 @@ attention_layer = ComplexAttention(
 attn_output = attention_layer(q, k, v)
 print("Attention Output Shape:", attn_output.shape)
 
-
 ```
 
 # License
 MIT
-
-
-
