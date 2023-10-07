@@ -2,7 +2,8 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-#helpers
+
+# helpers
 class ComplexLayerNorm(nn.Module):
     """ "
     Complex Layer Normalization where the normalization is computed as:
@@ -42,6 +43,7 @@ class ComplexLayerNorm(nn.Module):
         norm_x = (x - mean) / std
         return self.a_2 * norm_x + self.b_2
 
+
 class RMSNorm(nn.Module):
     """
     Root Mean Square Layer Normalization where the normalization is computed as:
@@ -50,36 +52,34 @@ class RMSNorm(nn.Module):
     Architecture:
         - scale: float
         - g: nn.Parameter
-    
+
     Args:
         dim (int): dimension of the input
-    
+
     Usage
     >>> x = torch.randn(32, 512, 512)
     >>> rms_norm = RMSNorm(512)
     >>> output = rms_norm(x)
-        
+
     """
+
     def __init__(
         self,
         dim: int = None,
     ):
         super().__init__()
-        self.scale = dim ** 0.5
+        self.scale = dim**0.5
         self.g = nn.Parameter(torch.ones(dim))
-    
+
     def forward(self, x):
         """
         Forward pass of the RMSNorm
         where x is the input tensor
         """
-        return F.normalize(
-            x,
-            dim=-1
-        ) * self.scale * self.g
-    
+        return F.normalize(x, dim=-1) * self.scale * self.g
 
-#main
+
+# main
 class ComplexAttention(nn.Module):
     """
     Complex Attention where the attention is computed as:
@@ -172,7 +172,6 @@ class ComplexAttention(nn.Module):
             k_real, k_imag = self.dropout(k_real), self.dropout(k_imag)
             v_real, v_imag = self.dropout(v_real), self.dropout(v_imag)
 
-
         # compute dot product
         attn_weights = (
             # q_real @ k_real + q_imag @ k_imag
@@ -197,21 +196,3 @@ class ComplexAttention(nn.Module):
         # output = self.out(output)
 
         return output
-
-# # Usage example
-d_model = 512
-nhead = 8
-seq_len = 512
-batch_size = 32
-
-q = torch.randn(batch_size, seq_len, d_model) + 1j * torch.randn(batch_size, seq_len, d_model)
-k = torch.randn(batch_size, seq_len, d_model) + 1j * torch.randn(batch_size, seq_len, d_model)
-v = torch.randn(batch_size, seq_len, d_model) + 1j * torch.randn(batch_size, seq_len, d_model)
-
-attention_layer = ComplexAttention(d_model, nhead, qk_norm=True)
-attn_output = attention_layer(q, k, v)
-print("Attention Output Shape:", attn_output.shape)
-
-# ln_layer = ComplexLayerNorm(d_model)
-# ln_output = ln_layer(attn_output)
-# print("LayerNorm Output Shape:", ln_output.shape)
