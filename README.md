@@ -1,6 +1,6 @@
 [![Multi-Modality](agorabanner.png)](https://discord.gg/qUtxnK2NMf)
 
-# Complex Transformer
+# Complex Transformer (WIP)
 The open source implementation of the attention and transformer from "Building Blocks for a Complex-Valued Transformer Architecture" where they propose an an attention mechanism for complex valued signals or images such as MRI and remote sensing.
 
 They present:
@@ -43,5 +43,19 @@ print("Attention Output Shape:", attn_output.shape)
 
 ```
 
+# Architecture
+- I use regular norm instead of complex norm for simplicity
+
 # License
 MIT
+
+# Citations
+```
+@article{2306.09827,
+Author = {Florian Eilers and Xiaoyi Jiang},
+Title = {Building Blocks for a Complex-Valued Transformer Architecture},
+Year = {2023},
+Eprint = {arXiv:2306.09827},
+Doi = {10.1109/ICASSP49357.2023.10095349},
+}
+```
