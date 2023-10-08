@@ -1,0 +1,7 @@
+# a well commented pylintrc example is at
+# [https://github.com/kubeflow/examples/blob/master/.pylintrc]
+#
+# This is a more minimal one, to set a minimal exception policy.
+
+# This will allow for all lowercase module names
+disable=invalid-name
