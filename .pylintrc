@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [MASTER]
 
 # A comma-separated list of package or module names from where C extensions may
@@ -567,3 +568,12 @@ valid-metaclass-classmethod-first-arg=cls
 # "BaseException, Exception".
 overgeneral-exceptions=BaseException,
                        Exception
+=======
+# a well commented pylintrc example is at
+# [https://github.com/kubeflow/examples/blob/master/.pylintrc]
+#
+# This is a more minimal one, to set a minimal exception policy.
+
+# This will allow for all lowercase module names
+disable=invalid-name
+>>>>>>> 1d515c1093b6e0b36295e76b7af33b44198f0ab1
