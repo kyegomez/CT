@@ -1,3 +1,5 @@
+"""Simple example of using the complex attention layer in a transformer model."""
+
 import torch
 from ct.attention import ComplexAttention
 
