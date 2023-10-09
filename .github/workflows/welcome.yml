@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    permissions: write-all
     name: 👋 Welcome
     runs-on: ubuntu-latest
     steps:
